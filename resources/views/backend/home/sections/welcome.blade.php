@@ -1,5 +1,12 @@
 <div class="card">
     <div class="card-header">
+        @if($data['canvasVersion'] !== $data['latestRelease'])
+            <div class="alert alert-info">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: white">&times;</a>
+                <a href="{{ url('http://github.com/austintoddj/canvas/releases/tag/') . $data['latestRelease'] }}" target="_blank" style="color: white"><strong>Canvas {{ $data['latestRelease'] }}</strong></a> is available! <a href="http://github.com/austintoddj/canvas/blob/master/UPGRADE.md" target="_blank" style="color: white"><strong>Please update now.</strong></a>
+            </div>
+        @endif
+
         <h2>Welcome to Canvas!
             <small>Here are some helpful links we've gathered to get you started:
             </small>
@@ -13,7 +20,7 @@
                 <a href="https://github.com/austintoddj/canvas#advanced-options" target="_blank" class="btn btn-primary btn-icon-text"><i class="zmdi zmdi-invert-colors"></i> Create a Theme</a>
                 <br>
                 <br>
-                <a href="{{ url('admin/profile/' . Auth::user()->id . '/edit') }}" class="btn btn-primary btn-icon-text"><i class="zmdi zmdi-account"></i> Update your Profile</a>
+                <a href="{{ url('admin/profile') }}" class="btn btn-primary btn-icon-text"><i class="zmdi zmdi-account"></i> Update your Profile</a>
                 <br>
                 <br>
             </div>

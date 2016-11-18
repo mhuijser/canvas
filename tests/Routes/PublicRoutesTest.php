@@ -2,25 +2,7 @@
 
 class PublicRoutesTest extends TestCase
 {
-    use InteractsWithDatabase;
-
-    /**
-     * The user model.
-     *
-     * @var App\Models\User
-     */
-    private $user;
-
-    /**
-     * Create the user model test subject.
-     *
-     * @before
-     * @return void
-     */
-    public function createUser()
-    {
-        $this->user = factory(App\Models\User::class)->create();
-    }
+    use InteractsWithDatabase, CreatesUser;
 
     /** @test */
     public function it_can_access_the_blog_index_page()

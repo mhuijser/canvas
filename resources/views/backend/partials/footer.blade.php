@@ -1,5 +1,5 @@
 <footer id="footer">
-    Thank you for creating with <a href="http://canvas.toddaustin.io" target="_blank">Canvas</a>&nbsp;&#183;&nbsp; Running {{ App\Models\Settings::canvasVersion() }}
+    Thank you for creating with <a href="http://canvas.toddaustin.io" target="_blank">Canvas</a>&nbsp;&#183;&nbsp; {{ App\Models\Settings::canvasVersion() }}
 
     <ul class="f-menu">
         <li><a href="{{ url('admin') }}">Home</a></li>

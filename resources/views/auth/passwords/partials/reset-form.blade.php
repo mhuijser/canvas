@@ -24,5 +24,5 @@
                placeholder="Confirm Password">
     </div>
 
-    <button type="submit" name="submit" class="btn btn-primary btn-block m-t-10">Reset my password</button>
+    <button type="submit" name="submit" class="btn btn-primary m-t-10">Reset my password</button>
 </form>

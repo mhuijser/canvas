@@ -1,7 +1,7 @@
 <p>Follow these steps to set up and start using your blog:</p>
 <ol id="help-intro">
     <li>
-        <strong>Update your profile</strong> Once logged in, head to the <a href="{{ url('admin/profile/1/edit') }}">Edit Profile</a> page and update your information. You should
+        <strong>Update your profile</strong> Once logged in, head to the <a href="{{ url('admin/profile') }}">Edit Profile</a> page and update your information. You should
         also <a href="{{ url('admin/profile/privacy') }}">update your password</a> to keep your blog as secure as possible.
     </li>
     <li>

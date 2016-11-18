@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+use App\Models\Post;
 use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
@@ -16,9 +17,11 @@ class SearchController extends Controller
     public function index()
     {
         $params = request('search');
+
         $posts = Post::search($params)->get();
         $tags = Tag::search($params)->get();
+        $users = User::search($params)->get();
 
-        return view('backend.search.index', compact('posts', 'tags'));
+        return view('backend.search.index', compact('posts', 'tags', 'users'));
     }
 }

@@ -56,7 +56,7 @@
 @stop
 
 @section('unique-js')
-    {!! JsValidator::formRequest('App\Http\Requests\TagUpdateRequest', '#tagUpdate'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\TagUpdateRequest', '#tagUpdate') !!}
     @if(Session::get('_update-tag'))
         @include('backend.partials.notify', ['section' => '_update-tag'])
         {{ \Session::forget('_update-tag') }}

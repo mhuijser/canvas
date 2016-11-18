@@ -20,12 +20,11 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::firstOrFail();
         $tag = $request->get('tag');
         $data = $this->dispatch(new BlogIndexData($tag));
         $layout = $tag ? Tag::layout($tag)->first() : config('blog.tag_layout');
 
-        return view($layout, $data)->with(compact('user'));
+        return view($layout, $data);
     }
 
     /**
@@ -37,8 +36,8 @@ class BlogController extends Controller
      */
     public function showPost($slug, Request $request)
     {
-        $user = User::findOrFail(1);
         $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
+        $user = User::where('id', $post->user_id)->firstOrFail();
         $tag = $request->get('tag');
         $title = $post->title;
         if ($tag) {

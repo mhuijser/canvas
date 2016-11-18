@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
-        <h2>Activity
-            <small>Recently published:</small>
+        <h2>Recent Activity
+            <small>Last 4 published blog posts:</small>
         </h2>
 
         <br>

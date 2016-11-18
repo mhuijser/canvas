@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers;
 use Excel;
 use Session;
 use App\Models\Tag;
@@ -25,7 +26,7 @@ class ToolsController extends Controller
     }
 
     /**
-     * Display a listing of the posts.
+     * Display the tools page.
      *
      * @return \Illuminate\View\View
      */
@@ -33,7 +34,7 @@ class ToolsController extends Controller
     {
         $data = [
             'indexModified' => file_exists(storage_path('posts.index')) ? filemtime(storage_path('posts.index')) : false,
-            'status' => App::isDownForMaintenance() ? 0 : 1,
+            'status' => App::isDownForMaintenance() ? Helpers::MAINTENANCE_MODE_ENABLED : Helpers::MAINTENANCE_MODE_DISABLED,
         ];
 
         return view('backend.tools.index', compact('data'));

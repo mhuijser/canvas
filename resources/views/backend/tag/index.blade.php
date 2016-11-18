@@ -22,7 +22,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li>
-                                        <a href="{{ url('admin/tag') }}">Refresh Tags</a>
+                                        <a href="{{ url('admin/tag') }}"><i class="zmdi zmdi-refresh-alt pd-r-5"></i> Refresh Tags</a>
                                     </li>
                                 </ul>
                             </li>
@@ -39,8 +39,8 @@
                         <table id="tags" class="table table-condensed table-vmiddle">
                             <thead>
                                 <tr>
-                                    <th data-column-id="id" data-type="numeric" data-sortable="false">Id</th>
-                                    <th data-column-id="title" data-order="desc">Title</th>
+                                    <th data-column-id="id" data-type="numeric" data-order="desc">Id</th>
+                                    <th data-column-id="title">Title</th>
                                     <th data-column-id="subtitle">Subtitle</th>
                                     <th data-column-id="layout">Layout</th>
                                     <th data-column-id="direction">Direction</th>

@@ -25,22 +25,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display the user profile edit page.
-     *
-     * @param $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $userData = User::where('id', $id)->firstOrFail()->toArray();
-        $blogData = config('blog');
-        $data = array_merge($userData, $blogData);
-
-        return view('backend.profile.edit', compact('data'));
-    }
-
-    /**
      * Display the user profile privacy page.
      *
      * @return \Illuminate\View\View
@@ -68,6 +52,6 @@ class ProfileController extends Controller
 
         Session::set('_profile', trans('messages.update_success', ['entity' => 'Profile']));
 
-        return redirect()->route('admin.profile.edit', $id);
+        return redirect()->route('admin.profile.index');
     }
 }

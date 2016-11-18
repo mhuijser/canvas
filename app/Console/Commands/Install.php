@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Artisan;
+use App\Helpers;
 use ConfigWriter;
 use App\Models\User;
 use App\Models\Settings;
@@ -101,6 +102,15 @@ class Install extends Command
 
         // Search Index
         $this->comment(PHP_EOL.'Building the search index...');
+        if (file_exists(storage_path('posts.index'))) {
+            unlink(storage_path('posts.index'));
+        }
+        if (file_exists(storage_path('users.index'))) {
+            unlink(storage_path('users.index'));
+        }
+        if (file_exists(storage_path('tags.index'))) {
+            unlink(storage_path('tags.index'));
+        }
         $exitCode = Artisan::call('canvas:index');
         $this->progress(5);
         $this->line(PHP_EOL.'<info>✔</info> Success! The application search index has been built.');
@@ -228,6 +238,7 @@ class Install extends Command
         $user->first_name = $firstName;
         $user->last_name = $lastName;
         $user->display_name = $firstName.' '.$lastName;
+        $user->role = Helpers::ROLE_ADMINISTRATOR;
         $user->save();
 
         $this->author($user->display_name);

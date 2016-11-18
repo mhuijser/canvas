@@ -1,8 +1,10 @@
 @if(Request::is('admin/post/create'))
     <form class="keyboard-save" role="form" method="POST" id="postCreate" action="{{ route('admin.post.store') }}">
+    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 @else
     <form class="keyboard-save" role="form" method="POST" id="postUpdate" action="{{ route('admin.post.update', $id) }}">
     <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="user_id" value="{{ $user_id }}">
 @endif
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="row">
@@ -70,7 +72,7 @@
                     <div class="form-group">
                         <div class="toggle-switch toggle-switch-demo" data-ts-color="blue">
                             <label for="is_draft" class="ts-label">Draft?</label>
-                            <input {{ checked($is_draft) }} type="checkbox" name="is_draft">
+                            <input {{ \App\Helpers::checked($is_draft) }} type="checkbox" name="is_draft">
                             <label for="is_draft" class="ts-helper"></label>
                         </div>
                     </div>

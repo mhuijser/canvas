@@ -12,7 +12,10 @@
                 <i class="zmdi zmdi-labels"></i> <a href="{{ url('admin/tag') }}">{{ count($data['tags']) }}{{ str_plural(' Tag', count($data['tags'])) }}</a>
             </li>
             <li>
-                @if($data['status'] === 1)
+                <i class="zmdi zmdi-accounts-alt"></i> <a href="{{ url('admin/user') }}">{{ count($data['users']) }}{{ str_plural(' User', count($data['users'])) }}</a>
+            </li>
+            <li>
+                @if($data['status'] === \App\Helpers::MAINTENANCE_MODE_DISABLED)
                     <i class="zmdi zmdi-globe-alt"></i> <a href="{{ url('admin/tools') }}"><span class="label label-success">Status: {{ strtoupper('Active') }}</span></a>
                 @else
                     <i class="zmdi zmdi-globe-alt"></i> <a href="{{ url('admin/tools') }}"><span class="label label-warning">Status: {{ strtoupper('Maintenance Mode') }}</span></a>
@@ -33,9 +36,5 @@
                 @endif
             </li>
         </ul>
-        @if($data['canvasVersion'] !== $data['latestRelease'])
-            <hr>
-            <a href="{{ url('http://github.com/austintoddj/canvas/releases/tag/') . $data['latestRelease'] }}" target="_blank"><small>Canvas {{ $data['latestRelease'] }}</a> is available! <a href="http://github.com/austintoddj/canvas/blob/master/UPGRADE.md" target="_blank">Please update now.</a></small>
-        @endif
     </div>
 </div>

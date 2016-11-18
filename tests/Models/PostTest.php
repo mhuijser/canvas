@@ -1,39 +1,25 @@
 <?php
 
 use App\Models\Tag;
+use App\Models\User;
 use EGALL\EloquentPHPUnit\EloquentTestCase;
 
 class PostTest extends EloquentTestCase
 {
+    use CreatesUser;
+
     /**
-     * The post model's full namesapce.
+     * The post model's full namespace.
      *
      * @var string
      */
     protected $model = 'App\Models\Post';
 
-    /**
-     * The user model.
-     *
-     * @var App\Models\User
-     */
-    private $user;
-
-    /**
-     * Create the user model test subject.
-     *
-     * @before
-     * @return void
-     */
-    public function createUser()
-    {
-        $this->user = factory(App\Models\User::class)->create();
-    }
-
     /** @test */
     public function the_database_table_has_all_of_the_correct_columns()
     {
         $this->table->column('id')->integer()->increments();
+        $this->table->column('user_id')->integer()->defaults(1)->index();
         $this->table->column('title')->string()->notNullable();
         $this->table->column('subtitle')->string()->notNullable();
         $this->table->column('content_raw')->text()->notNullable();
@@ -57,9 +43,10 @@ class PostTest extends EloquentTestCase
     /** @test */
     public function it_has_the_correct_model_properties()
     {
-        $this->hasFillable('title', 'subtitle', 'content_raw', 'page_image', 'meta_description', 'layout', 'is_draft', 'published_at', 'slug')
-             ->hasDates('published_at')
-             ->belongsToMany(Tag::class);
+        $this->hasFillable('title', 'subtitle', 'content_raw', 'page_image', 'meta_description', 'layout', 'is_draft', 'published_at', 'slug', 'user_id')
+            ->hasDates('published_at')
+            ->belongsToMany(Tag::class)
+            ->belongsTo(User::class);
     }
 
     /** @test */
@@ -73,6 +60,8 @@ class PostTest extends EloquentTestCase
     public function it_can_create_a_post_and_save_it_to_the_database()
     {
         $data = [
+            'id'            => 2,
+            'user_id'       => 1,
             'title'         => 'example',
             'slug'          => 'foo',
             'subtitle'      => 'bar',
@@ -84,7 +73,7 @@ class PostTest extends EloquentTestCase
         $this->callRouteAsUser('admin.post.store', null, $data)
               ->seePostInDatabase(['title' => 'example', 'content_raw' => 'FooBar', 'content_html' => '<p>FooBar</p>'])
               ->seeInSession('_new-post', trans('messages.create_success', ['entity' => 'post']))
-              ->assertRedirectedTo('admin/post')
+              ->assertRedirectedTo('admin/post/2/edit')
               ->assertSessionMissing('errors');
     }
 

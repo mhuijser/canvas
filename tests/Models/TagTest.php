@@ -5,30 +5,14 @@ use EGALL\EloquentPHPUnit\EloquentTestCase;
 
 class TagTest extends EloquentTestCase
 {
+    use CreatesUser;
+
     /**
      * The tag model's full namespace.
      *
      * @var string
      */
     protected $model = 'App\Models\Tag';
-
-    /**
-     * The user model.
-     *
-     * @var App\Models\User
-     */
-    private $user;
-
-    /**
-     * Create the user model test subject.
-     *
-     * @before
-     * @return void
-     */
-    public function createUser()
-    {
-        $this->user = factory(App\Models\User::class)->create();
-    }
 
     /** @test */
     public function the_database_table_has_all_of_the_correct_columns()

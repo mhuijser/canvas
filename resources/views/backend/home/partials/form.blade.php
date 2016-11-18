@@ -1,3 +1,5 @@
+<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
 <div class="form-group">
     <div class="fg-line">
         <input type="text" class="form-control" name="title" id="title"  placeholder="Title">

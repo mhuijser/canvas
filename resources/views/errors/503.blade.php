@@ -1,4 +1,4 @@
-@extends('backend.layout')
+@extends('errors.layout')
 
 @section('title')
     <title>Canvas | Be right back</title>

@@ -19,7 +19,7 @@
 @stop
 
 @section('unique-js')
-    {!! JsValidator::formRequest('App\Http\Requests\PasswordUpdateRequest', '#passwordUpdate'); !!}
+    {!! JsValidator::formRequest('App\Http\Requests\PasswordUpdateRequest', '#passwordUpdate') !!}
     @include('backend.shared.components.show-password', ['inputs' => 'input[name="password"], input[name="new_password"], input[name="new_password_confirmation"]'])
 
     @if(Session::get('_passwordUpdate'))

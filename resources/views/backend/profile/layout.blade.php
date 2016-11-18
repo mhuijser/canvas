@@ -18,7 +18,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
-                                    <a href="{{ url('admin/profile') }}">Refresh Profile</a>
+                                    <a href="{{ url('admin/profile') }}"><i class="zmdi zmdi-refresh-alt pd-r-5"></i> Refresh Profile</a>
                                 </li>
                             </ul>
                         </li>
@@ -31,9 +31,6 @@
                             <ul class="tab-nav tn-justified">
                                 <li class="{{ Route::is('admin.profile.index') ? 'active' : '' }}">
                                     <a href="{{ url('admin/profile') }}">Profile</a>
-                                </li>
-                                <li class="{{ Route::is('admin.profile.edit') ? 'active' : '' }}">
-                                    <a href="{{ url('/admin/profile') }}/{{ Auth::id() }}/edit">Edit</a>
                                 </li>
                                 <li class="{{ Route::is('admin.profile.privacy') ? 'active' : '' }}">
                                     <a href="{{ url('admin/profile/privacy') }}">Privacy</a>

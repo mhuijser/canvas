@@ -1,5 +1,5 @@
-* text=auto
-
-public/assets/css/* linguist-vendored
-public/build/assets/css/* linguist-vendored
-resources/assets/talvbansal/media-manager/css/media-manager.css linguist-vendored
+ * text=auto
+ *.css linguist-vendored       
+ *.scss linguist-vendored      
+ *.js linguist-vendored        
+ resources/views/* linguist-vendored

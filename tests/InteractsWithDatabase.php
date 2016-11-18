@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 trait InteractsWithDatabase
@@ -7,7 +10,7 @@ trait InteractsWithDatabase
     use DatabaseTransactions;
 
     /**
-     * Setup the test environment.
+     * Set up the test environment.
      *
      * @return void
      */
@@ -15,9 +18,10 @@ trait InteractsWithDatabase
     {
         parent::setUp();
 
-        // Disable searchable trait to speed up tests...
-        \App\Models\Post::disableSearchSyncing();
-        \App\Models\Tag::disableSearchSyncing();
+        // Disable searchable trait to speed up tests.
+        Post::disableSearchSyncing();
+        Tag::disableSearchSyncing();
+        User::disableSearchSyncing();
 
         $this->runDatabaseMigrations();
 

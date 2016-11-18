@@ -1,31 +1,8 @@
 <?php
 
-/**
- * Class AdminRoutesTest.
- *
- * Test the response code for each administrative route after login.
- */
 class AdminRoutesTest extends TestCase
 {
-    use InteractsWithDatabase;
-
-    /**
-     * The user model.
-     *
-     * @var App\Models\User
-     */
-    private $user;
-
-    /**
-     * Create the user model test subject.
-     *
-     * @before
-     * @return void
-     */
-    public function createUser()
-    {
-        $this->user = factory(App\Models\User::class)->create();
-    }
+    use InteractsWithDatabase, CreatesUser;
 
     /** @test */
     public function it_can_access_the_home_page()
@@ -83,14 +60,6 @@ class AdminRoutesTest extends TestCase
     }
 
     /** @test */
-    public function it_can_access_the_edit_profile_page()
-    {
-        $response = $this->actingAs($this->user)->call('GET', '/admin/profile/'.$this->user['id'].'/edit');
-        $this->assertEquals(200, $response->status());
-        $this->assertViewHasAll(['data']);
-    }
-
-    /** @test */
     public function it_can_access_the_profile_privacy_page()
     {
         $response = $this->actingAs($this->user)->call('GET', '/admin/profile/privacy');
@@ -118,6 +87,27 @@ class AdminRoutesTest extends TestCase
     public function it_can_access_the_help_index_page()
     {
         $response = $this->actingAs($this->user)->call('GET', '/admin/help');
+        $this->assertEquals(200, $response->status());
+    }
+
+    /** @test */
+    public function it_can_access_the_users_index_page()
+    {
+        $response = $this->actingAs($this->user)->call('GET', '/admin/user');
+        $this->assertEquals(200, $response->status());
+    }
+
+    /** @test */
+    public function it_can_access_the_edit_users_page()
+    {
+        $response = $this->actingAs($this->user)->call('GET', '/admin/user/'. 2 .'/edit');
+        $this->assertEquals(200, $response->status());
+    }
+
+    /** @test */
+    public function it_can_access_the_edit_users_privacy_page()
+    {
+        $response = $this->actingAs($this->user)->call('GET', '/admin/user/'. 2 .'/privacy');
         $this->assertEquals(200, $response->status());
     }
 }

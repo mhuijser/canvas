@@ -33,6 +33,9 @@ class Index extends Command
 
         $this->createTagsIndex();
         $this->line('<info>✔</info> Success! The tags index has been completed.');
+
+        $this->createUsersIndex();
+        $this->line('<info>✔</info> Success! The users index has been completed.');
     }
 
     public function createPostsIndex()
@@ -45,5 +48,11 @@ class Index extends Command
     {
         $this->comment(PHP_EOL.'Indexing tags table and saving it to /storage/tags.index...');
         \Artisan::call('scout:import', ['model' => 'App\\Models\\Tag']);
+    }
+
+    public function createUsersIndex()
+    {
+        $this->comment(PHP_EOL.'Indexing users table and saving it to /storage/users.index...');
+        \Artisan::call('scout:import', ['model' => 'App\\Models\\User']);
     }
 }

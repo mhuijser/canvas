@@ -2,9 +2,9 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class UpdateProfileTest extends TestCase
+class ProfilePageTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, CreatesUser;
 
     protected $optionalFields = [
         'bio' => 'Summary',
@@ -30,25 +30,20 @@ class UpdateProfileTest extends TestCase
         'email',
     ];
 
-    /** @test */
-    public function it_doesnt_hide_optional_fields_if_empty()
+    public function it_can_refresh_the_profile_page()
     {
-        // First, make sure we can see all the elements
-        $user = factory(App\Models\User::class)->create();
-        $this->actingAs($user)->visit('/admin/profile');
-        array_map([$this, 'see'], $this->optionalFields);
-
-        // Now, set them all to NULL and make sure we do not see them
-        $user->update(array_fill_keys(array_keys($this->optionalFields), null));
-        $this->actingAs($user)->visit('/admin/profile');
-        array_map([$this, 'dontSee'], $this->optionalFields);
+        $this->actingAs($this->user)
+            ->visit('/admin/profile')
+            ->click('Refresh Profile');
+        $this->assertSessionMissing('errors');
+        $this->seePageIs('/admin/profile');
     }
 
     /** @test */
     public function it_shows_error_messages_for_required_fields()
     {
         $this->actingAs(factory(App\Models\User::class)->create())
-            ->visit('/admin/profile/1/edit');
+            ->visit('/admin/profile');
 
         // Fill in all of the required fields with an empty string
         foreach ($this->requiredFields as $name) {
@@ -61,5 +56,14 @@ class UpdateProfileTest extends TestCase
         foreach ($this->requiredFields as $name) {
             $this->see('The '.str_replace('_', ' ', $name).' field is required.');
         }
+    }
+
+    /** @test */
+    public function it_can_update_the_authenticated_users_profile()
+    {
+        $this->actingAs($this->user)->visit('/admin/profile');
+        $this->type('Luke Skywalker', 'display_name')->press('Save')->see('Success! Profile has been updated.');
+        $this->assertSessionMissing('errors');
+        $this->seePageIs('admin/profile');
     }
 }

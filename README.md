@@ -1,13 +1,13 @@
 ## Canvas
 
-[![Canvas Screenshots](https://raw.githubusercontent.com/austintoddj/canvas/gh-pages/img/readme.jpg)](http://canvas.toddaustin.io)
-
 [![Build Status](https://travis-ci.org/austintoddj/canvas.svg?branch=master)](https://travis-ci.org/austintoddj/canvas)
 [![StyleCI](https://styleci.io/repos/52815899/shield?style=flat&branch=master)](https://styleci.io/repos/52815899)
 [![Dependency Status](https://www.versioneye.com/user/projects/57dff0d579806f0043346a68/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57dff0d579806f0043346a68)
 [![Total Downloads](https://poser.pugx.org/austintoddj/canvas/downloads)](https://packagist.org/packages/austintoddj/canvas)
 [![Latest Stable Version](https://poser.pugx.org/austintoddj/canvas/v/stable)](https://packagist.org/packages/austintoddj/canvas)
 [![License](https://poser.pugx.org/austintoddj/canvas/license)](https://packagist.org/packages/austintoddj/canvas)
+
+[![Canvas Screenshots](https://raw.githubusercontent.com/austintoddj/canvas/gh-pages/img/readme.jpg)](http://canvas.toddaustin.io)
 
 [Canvas](http://canvas.toddaustin.io) is a simple, powerful blog publishing platform that lets you to share your stories with the world. Its beautifully designed interface and completely customizable framework allows you to create and publish your own blog, giving you tools that make it easy and even fun to do.
 
@@ -19,8 +19,9 @@ Before you proceed make sure your server meets the following requirements:
 
 - [Composer](https://getcomposer.org/)
 - [PHP](https://php.net/) >= 5.6.4
-- PHP Extensions ([PDO](http://php.net/manual/en/book.pdo.php), [SQLite](http://php.net/manual/en/book.sqlite.php), [OpenSSL](http://php.net/manual/en/book.openssl.php), [Mbstring](http://php.net/manual/en/book.mbstring.php), [Tokenizer](http://php.net/manual/en/book.tokenizer.php))
-- PDO compliant database (SQL, MySQL, PostgreSQL, SQLite)
+- JavaScript package manager ([Yarn](https://yarnpkg.com/) / [NPM](https://www.npmjs.com))
+- PHP extensions ([PDO](http://php.net/manual/en/book.pdo.php), [SQLite](http://php.net/manual/en/book.sqlite.php), [OpenSSL](http://php.net/manual/en/book.openssl.php), [Mbstring](http://php.net/manual/en/book.mbstring.php), [Tokenizer](http://php.net/manual/en/book.tokenizer.php), [Zip](http://php.net/manual/en/book.zip.php))
+- PDO compliant database ([SQL](https://www.microsoft.com/en-us/sql-server/) / [MySQL](https://www.mysql.com) / [PostgreSQL](https://www.postgresql.org) / [SQLite](https://www.sqlite.org))
 
 ## Installation
 
@@ -30,7 +31,7 @@ Before you proceed make sure your server meets the following requirements:
     * Use [Packagist](https://packagist.org): `composer create-project austintoddj/canvas`
 
 2. Run `composer install` from the command line in the project root.
-3. Run `yarn` from the command line in the project root. [What is Yarn?](https://yarnpkg.com/)
+3. Run `yarn` from the command line in the project root.
 4. Run `php artisan storage:link` to link the `storage/app/public` folder to `public/storage` 
 5. Copy the contents of `.env.example` and create a new file called `.env` in the project root. Set your application variables in the new file. Be sure to keep the value of `APP_ENV` set to `local` for the duration of the install.
 6. Run `php artisan canvas:install` and follow the on-screen prompts.
@@ -41,7 +42,6 @@ Before you proceed make sure your server meets the following requirements:
 ## Advanced Options
 
 1. Themes
-    * Run `yarn add gulp` from the command line in the project root.
     * Create your own theme by editing the stylesheet at `resources/assets/sass/theme/styles.scss` or grab an [Official Canvas Theme](https://github.com/austintoddj/palette), fresh off the palette.
     * Run `gulp` after any changes to `resources/assets/sass/theme/styles.scss`
 
@@ -58,7 +58,7 @@ Before you proceed make sure your server meets the following requirements:
 
 ## Contributing
 
-Thank you for considering contributing to Canvas! The [contribution guide](https://github.com/austintoddj/Canvas/blob/master/CONTRIBUTING.md) provides instructions on how to [submit an issue](https://github.com/austintoddj/canvas/issues), [create pull requests](https://github.com/austintoddj/canvas/pulls) and more. It also has details about joining the official [HipChat group](https://canvas-blog.hipchat.com/home) for those who want to be a part of Canvas' future development.
+Thank you for considering contributing to Canvas! The [contribution guide](https://github.com/austintoddj/Canvas/blob/master/CONTRIBUTING.md) provides instructions on how to [submit an issue](https://github.com/austintoddj/canvas/issues), [create pull requests](https://github.com/austintoddj/canvas/pulls) and more. It also has details about joining the official [HipChat group](https://canvas-chat.hipchat.com) for those who want to be a part of Canvas' future development.
 
 ## Changelog
 

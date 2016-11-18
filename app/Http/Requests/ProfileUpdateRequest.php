@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileUpdateRequest extends FormRequest
@@ -23,11 +25,17 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $email = Auth::user()->email;
+
         return [
             'first_name' => 'required',
             'last_name' => 'required',
             'display_name' => 'required',
-            'email' => 'required',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($email, 'email'),
+            ],
         ];
     }
 }

@@ -5,7 +5,7 @@
 | User Model Factory
 |--------------------------------------------------------------------------
 |
-| Create a user model in the database.
+| Create the user model in the database for testing purposes.
 |
 */
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
@@ -13,6 +13,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'first_name' => $first = $faker->firstName,
         'last_name' => $last = $faker->lastName,
         'display_name' => $first.' '.$last,
+        'role' => 1,
         'job' => $faker->jobTitle,
         'birthday' => $faker->date('Y-m-d'),
         'email' => $faker->safeEmail,
@@ -26,49 +27,49 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'country' => $faker->countryCode,
         'url' => $faker->url,
         'phone' => $faker->phoneNumber,
-        'bio' => $faker->paragraph,
-        'gender' => 'foo',
-        'relationship' => 'foo',
+        'bio' => $faker->sentence,
+        'gender' => 'Male',
+        'relationship' => 'Single',
         'password' => bcrypt('password'),
     ];
 });
 
 /*
 |--------------------------------------------------------------------------
-| Posts Model Factory
+| Post Model Factory
 |--------------------------------------------------------------------------
 |
-| Create the Welcome post in the database.
+| Create the initial Post.
 |
 */
 $factory->define(App\Models\Post::class, function () {
     return [
-    'title' => 'Hello World',
-    'slug' => 'hello-world',
-    'subtitle' => 'Canvas is a simple, powerful blog publishing platform that lets you to share your stories with the world. Its beautifully designed interface allows you to create and publish your own blog, giving you tools that make it easy and even fun to do.',
-    'page_image' => '/images/mocha.jpg',
-    'content_raw' => view('frontend.blog.partials.welcome'),
-    'published_at' => Carbon\Carbon::now(),
-    'meta_description' => 'Let\'s get you up and running with Canvas!',
-    'is_draft' => false,
-  ];
+        'title' => 'Hello World',
+        'slug' => 'hello-world',
+        'subtitle' => 'Canvas is a simple, powerful blog publishing platform that lets you to share your stories with the world. Its beautifully designed interface allows you to create and publish your own blog, giving you tools that make it easy and even fun to do.',
+        'page_image' => '/assets/images/mocha.jpg',
+        'content_raw' => view('frontend.blog.partials.welcome'),
+        'published_at' => Carbon\Carbon::now(),
+        'meta_description' => 'Let\'s get you up and running with Canvas!',
+        'is_draft' => false,
+    ];
 });
 
 /*
 |--------------------------------------------------------------------------
-| Tags Model Factory
+| Tag Model Factory
 |--------------------------------------------------------------------------
 |
-| Create tags for the Welcome post in the database.
+| Create the initial Tag.
 |
 */
 $factory->define(App\Models\Tag::class, function () {
     return [
-    'tag' => 'Getting Started',
-    'title' => 'Getting Started',
-    'subtitle' => 'Getting started with Canvas',
-    'meta_description' => 'Meta content for this tag.',
-    'reverse_direction' => false,
-    'created_at' => Carbon\Carbon::now(),
-  ];
+        'tag' => 'Getting Started',
+        'title' => 'Getting Started',
+        'subtitle' => 'Getting started with Canvas',
+        'meta_description' => 'Meta content for this tag.',
+        'reverse_direction' => false,
+        'created_at' => Carbon\Carbon::now(),
+    ];
 });

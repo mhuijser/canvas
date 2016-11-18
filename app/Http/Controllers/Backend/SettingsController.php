@@ -51,46 +51,14 @@ class SettingsController extends Controller
      */
     public function store(SettingsUpdateRequest $request)
     {
-        $blogTitle = Settings::where('setting_name', 'blog_title')->first();
-        $blogTitle->setting_name = 'blog_title';
-        $blogTitle->setting_value = $request->toArray()['blog_title'];
-        $blogTitle->update();
-
-        $blogSubtitle = Settings::where('setting_name', 'blog_subtitle')->first();
-        $blogSubtitle->setting_name = 'blog_subtitle';
-        $blogSubtitle->setting_value = $request->toArray()['blog_subtitle'];
-        $blogSubtitle->update();
-
-        $blogDescription = Settings::where('setting_name', 'blog_description')->first();
-        $blogDescription->setting_name = 'blog_description';
-        $blogDescription->setting_value = $request->toArray()['blog_description'];
-        $blogDescription->update();
-
-        $blogSeo = Settings::where('setting_name', 'blog_seo')->first();
-        $blogSeo->setting_name = 'blog_seo';
-        $blogSeo->setting_value = $request->toArray()['blog_seo'];
-        $blogSeo->update();
-
-        $blogAuthor = Settings::where('setting_name', 'blog_author')->first();
-        $blogAuthor->setting_name = 'blog_author';
-        $blogAuthor->setting_value = $request->toArray()['blog_author'];
-        $blogAuthor->update();
-
-        $disqusName = Settings::where('setting_name', 'disqus_name')->first();
-        $disqusName->setting_name = 'disqus_name';
-        $disqusName->setting_value = $request->toArray()['disqus_name'];
-        $disqusName->update();
-
-        $gaId = Settings::where('setting_name', 'ga_id')->first();
-        $gaId->setting_name = 'ga_id';
-        $gaId->setting_value = $request->toArray()['ga_id'];
-        $gaId->update();
-
-        $twitterCardType = Settings::where('setting_name', 'twitter_card_type')->first();
-        $twitterCardType->setting_name = 'twitter_card_type';
-        $twitterCardType->setting_value = $request->toArray()['twitter_card_type'];
-        $twitterCardType->update();
-
+        Settings::updateOrCreate(['setting_name' => 'blog_title'], ['setting_value' => $request->toArray()['blog_title']]);
+        Settings::updateOrCreate(['setting_name' => 'blog_subtitle'], ['setting_value' => $request->toArray()['blog_subtitle']]);
+        Settings::updateOrCreate(['setting_name' => 'blog_description'], ['setting_value' => $request->toArray()['blog_description']]);
+        Settings::updateOrCreate(['setting_name' => 'blog_seo'], ['setting_value' => $request->toArray()['blog_seo']]);
+        Settings::updateOrCreate(['setting_name' => 'blog_author'], ['setting_value' => $request->toArray()['blog_author']]);
+        Settings::updateOrCreate(['setting_name' => 'disqus_name'], ['setting_value' => $request->toArray()['disqus_name']]);
+        Settings::updateOrCreate(['setting_name' => 'ga_id'], ['setting_value' => $request->toArray()['ga_id']]);
+        Settings::updateOrCreate(['setting_name' => 'twitter_card_type'], ['setting_value' => $request->toArray()['twitter_card_type']]);
 
         Session::set('_update-settings', trans('messages.save_settings_success'));
 

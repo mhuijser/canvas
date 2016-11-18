@@ -34,6 +34,7 @@ class PostFormFields
      * @var array
      */
     protected $fieldList = [
+        'user_id' => '',
         'title' => '',
         'slug' => '',
         'subtitle' => '',

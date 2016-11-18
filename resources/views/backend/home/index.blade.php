@@ -1,7 +1,7 @@
 @extends('backend.layout')
 
 @section('title')
-    <title>{{ Settings::blogTitle() }} | Home</title>
+    <title>{{ \App\Models\Settings::blogTitle() }} | Home</title>
 @stop
 
 @section('content')
@@ -9,16 +9,18 @@
         @include('backend.partials.sidebar-navigation')
         <section id="content">
             <div class="container">
-                @include('backend.home.sections.welcome')
+                @if(\App\Models\User::isAdmin(Auth::user()->role))
+                    @include('backend.home.sections.welcome')
+                @endif
                 <div class="row">
-                    <div class="col-sm-6 col-md-6">
-                        @include('backend.home.sections.at-a-glance')
-                    </div>
+                    @if(\App\Models\User::isAdmin(Auth::user()->role))
+                        <div class="col-sm-6 col-md-6">
+                            @include('backend.home.sections.at-a-glance')
+                        </div>
+                    @endif
                     <div class="col-sm-6 col-md-6">
                         @include('backend.home.sections.quick-draft')
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-6 col-md-6">
                         @include('backend.home.sections.recent-posts')
                     </div>

@@ -2,30 +2,9 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class UpdateSettingsTest extends TestCase
+class SettingsPageTest extends TestCase
 {
-    use DatabaseMigrations;
-
-    /**
-     * The user model.
-     *
-     * @var App\Models\User
-     */
-    private $user;
-
-    /**
-     * Create the user model test subject.
-     *
-     * @before
-     * @return void
-     */
-    public function createUser()
-    {
-        $this->user = factory(App\Models\User::class)->create([
-            'email'     => 'foo@bar.com',
-            'password'  => bcrypt('password'),
-        ]);
-    }
+    use DatabaseMigrations, CreatesUser;
 
     protected $optionalFields = [
         'blog_description' => '<dt>Description</dt>',
@@ -62,14 +41,18 @@ class UpdateSettingsTest extends TestCase
     /** @test */
     public function it_can_update_the_settings()
     {
-        $this->actingAs($this->user)
-            ->visit('/admin/settings');
-
-        $this->type('New and Updated Title', 'blog_title')
-            ->press('Save');
-
+        $this->actingAs($this->user)->visit('/admin/settings');
+        $this->type('New and Updated Title', 'blog_title')->press('Save');
         $this->assertSessionMissing('errors');
-
         $this->seePageIs('admin/settings');
+    }
+
+    /** @test */
+    public function it_cannot_access_the_settings_page_if_user_is_not_an_admin()
+    {
+        $this->user['role'] = 0;
+        $this->actingAs($this->user)->visit('/admin/settings');
+        $this->seePageIs('/admin');
+        $this->assertSessionMissing('errors');
     }
 }

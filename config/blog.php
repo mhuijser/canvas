@@ -11,7 +11,7 @@ return [
     | process.
     |
     */
-    'version' => 'v2.1.11',
+    'version' => 'v2.1.15',
 
     /*
     |--------------------------------------------------------------------------
@@ -27,23 +27,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Canvas Configuration : Storage
-    |--------------------------------------------------------------------------
-    |
-    | Specify what type of storage you would like for your application. Just
-    | as a reminder, your uploads directory MUST be writable by the
-    | web server for the uploading to function properly.
-    |
-    | Supported: "local"
-    |
-    */
-    'uploads' => [
-        'storage' => 'local',
-        'webpath' => '/uploads/',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Canvas Configuration : Trim Width
     |--------------------------------------------------------------------------
     |
@@ -51,8 +34,8 @@ return [
     | the application, we need to trim the width of them and simply
     | add an ellipses at the trim point.
     |
-    | backend_trim_width: Used in the Posts Datatable
-    | frontend_trim_width: Used in the Individual Post view
+    | backend_trim_width: NOT IN USE
+    | frontend_trim_width: Used in the individual post view template
     |
     */
     'backend_trim_width' => 40,

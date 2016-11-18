@@ -1,28 +1,17 @@
 <?php
 
-class UpdatePasswordTest extends TestCase
+class ProfilePrivacyPageTest extends TestCase
 {
-    use InteractsWithDatabase;
+    use InteractsWithDatabase, CreatesUser;
 
-    /**
-     * The user model.
-     *
-     * @var App\Models\User
-     */
-    private $user;
-
-    /**
-     * Create the user model test subject.
-     *
-     * @before
-     * @return void
-     */
-    public function createUser()
+    /** @test */
+    public function it_can_refresh_the_profile_privacy_page()
     {
-        $this->user = factory(App\Models\User::class)->create([
-            'email'     => 'foo@bar.com',
-            'password'  => bcrypt('password'),
-        ]);
+        $this->actingAs($this->user)
+            ->visit('/admin/profile/privacy')
+            ->click('Refresh Profile');
+        $this->assertSessionMissing('errors');
+        $this->seePageIs('/admin/profile');
     }
 
     /** @test */

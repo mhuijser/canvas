@@ -35,6 +35,7 @@ class PostCreateRequest extends FormRequest
     public function postFillData()
     {
         return [
+            'user_id' => $this->user_id,
             'title' => $this->title,
             'slug' => $this->slug,
             'subtitle' => $this->subtitle,
